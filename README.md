@@ -38,70 +38,13 @@ The result: each alert comes with a structured brief showing *what the model is 
 
 Start with RoEduNet for a cleaner development cycle. Use BCCC for richer attack variety, or train on both and report cross-dataset results.
 
----
-
-## Project Structure
-
-```
-Actionable-CF-NIDS/
-│
-├── README.md
-├── requirements.txt
-├── config.yaml                    # Dataset paths, model hyperparams, feature count thresholds
-├── .gitignore
-├── LICENSE
-│
-├── data/
-│   ├── raw/                       # Original dataset files (gitignored)
-│   ├── processed/                 # Cleaned, encoded, train/test splits
-│   └── feature_glossary.yaml      # Per-feature: name, description, type, min/max range, unit
-│
-├── notebooks/
-│   ├── 01_eda.ipynb               # Exploratory data analysis + class distribution
-│   ├── 02_feature_selection.ipynb  # SHAP-based feature pruning walkthrough
-│   ├── 03_counterfactuals.ipynb   # CF generation, analysis, metric computation
-│   └── 04_case_studies.ipynb      # End-to-end analyst-facing case studies
-│
-├── src/
-│   ├── data/
-│   │   ├── loader.py              # Load and validate raw dataset
-│   │   └── preprocess.py          # Clean, encode, normalize, stratified split
-│   │
-│   ├── model/
-│   │   ├── train.py               # Train XGBoost (full and reduced feature sets)
-│   │   └── evaluate.py            # Per-class and aggregate classification metrics
-│   │
-│   ├── explain/
-│   │   ├── shap_analysis.py       # SHAP value computation + global/per-class ranking
-│   │   ├── feature_selector.py    # Top-k sweep, retrain, elbow detection
-│   │   ├── counterfactual.py      # DiCE-based CF generation with feature constraints
-│   │   └── templates.py           # Deterministic explanation templates + MITRE mapping
-│   │
-│   └── evaluation/
-│       ├── model_metrics.py       # F1, precision, recall, ROC curves
-│       ├── cf_metrics.py          # Validity, proximity, sparsity, plausibility
-│       └── case_study.py          # Render structured analyst briefs
-│
-├── app/
-│   └── streamlit_app.py           # Interactive demo dashboard
-│
-├── results/
-│   ├── figures/                   # SHAP plots, CF comparisons, metric charts
-│   ├── tables/                    # CSV exports of all evaluation results
-│   └── case_studies/              # Rendered analyst briefs (markdown or HTML)
-│
-└── tests/
-    ├── test_preprocess.py
-    ├── test_feature_selector.py
-    └── test_counterfactual.py
-```
 
 ---
 
 ## Setup
 
 ```bash
-git clone https://github.com/<your-username>/Actionable-CF-NIDS.git
+git clone https://github.com/stephlam-um/Actionable-CF-NIDS.git
 cd Actionable-CF-NIDS
 
 python -m venv venv
