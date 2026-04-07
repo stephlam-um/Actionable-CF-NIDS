@@ -1,0 +1,43 @@
+# Dataset selection: "roedunet" or "bccc"
+dataset: roedunet
+
+paths:
+  roedunet:
+    raw: data/raw/roedunet.csv
+    processed_train: data/processed/roedunet_train.csv
+    processed_test: data/processed/roedunet_test.csv
+  bccc:
+    raw: data/raw/bccc_ids2017.csv
+    processed_train: data/processed/bccc_train.csv
+    processed_test: data/processed/bccc_test.csv
+  feature_glossary: data/feature_glossary.yaml
+  model_dir: results/models/
+  figures_dir: results/figures/
+  tables_dir: results/tables/
+  case_studies_dir: results/case_studies/
+
+preprocessing:
+  test_size: 0.2
+  random_state: 42
+  scaler: standard  # "standard" or "minmax"
+  target_column: label
+
+model:
+  objective: multi:softprob
+  n_estimators: 300
+  max_depth: 6
+  learning_rate: 0.1
+  subsample: 0.8
+  colsample_bytree: 0.8
+  random_state: 42
+  n_jobs: -1
+
+feature_selection:
+  top_k_values: [5, 10, 15, 20, 25, 30]
+  f1_drop_threshold: 0.03  # max acceptable F1 drop from baseline
+
+counterfactuals:
+  n_samples_per_class: 50
+  n_cfs_per_sample: 3
+  method: random  # "random" or "genetic"
+  target_class: benign

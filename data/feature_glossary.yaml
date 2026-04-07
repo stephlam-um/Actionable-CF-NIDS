@@ -1,0 +1,28 @@
+# Feature glossary — one entry per feature.
+# Fields: name, description, type (continuous/categorical), min, max, unit
+# Used for DiCE plausibility constraints and analyst brief rendering.
+#
+# Populate this based on the dataset paper:
+#   RoEduNet: Szczepanski et al. (2021), Sensors 21(13), 4319
+#   BCCC: NTLFlowLyzer documentation
+
+# Example entries (replace with actual dataset features):
+# - name: FLOW_DURATION_MILLISECONDS
+#   description: Total duration of the network flow in milliseconds
+#   type: continuous
+#   min: 0
+#   max: 120000
+#   unit: ms
+#
+# - name: NUM_PKTS_UP_TO_128_BYTES
+#   description: Number of packets with size up to 128 bytes
+#   type: continuous
+#   min: 0
+#   max: 100000
+#   unit: count
+#
+# - name: PROTOCOL
+#   description: Transport layer protocol (TCP=6, UDP=17, ICMP=1)
+#   type: categorical
+#   categories: [1, 6, 17]
+#   unit: protocol_number
